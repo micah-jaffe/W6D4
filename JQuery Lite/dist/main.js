@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("class DOMNodeCollection {\n  constructor(array){\n    this.elements = array;\n  }\n}\n\nmodule.exports = DOMNodeCollection;\n\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
+eval("class DOMNodeCollection {\n  constructor(array){\n    this.elements = array;\n  }\n\n  html(...restArgs) {\n    if (restArgs.length === 0) {\n      return this.elements[0].innerHTML;\n    } else if (restArgs.length === 1) {\n      const newHtml = restArgs[0];\n      for (let i = 0; i < this.elements.length; i++) {\n        this.elements[i].innerHTML = newHtml;\n      }\n      return this;\n    }\n  }\n\n  empty() {\n    for (let i = 0; i < this.elements.length; i++) {\n      this.elements[i].innerHTML = \"\";\n    }\n  }\n\n  append(args) {\n    if (this.elements.length === 0) return;\n\n    if (args instanceof HTMLElement){\n\n    } else if (typeof args === \"string\") {\n      this.elements.forEach( (node) => {\n        node.innerHTML += args;\n      });\n    } else if (args instanceof DOMNodeCollection) {\n      this.elements.forEach( (node) => {\n        args.forEach( (arg) => {\n          node.appendChild(arg);\n        });\n      });\n    }\n  }\n\n}\n\nmodule.exports = DOMNodeCollection;\n\n\n//# sourceURL=webpack:///./src/dom_node_collection.js?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("class DOMNodeCollection {\n  constructor(array){\n    this.elements = arra
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection.js */ \"./src/dom_node_collection.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function() {\n  test();\n  window.$l = $l;\n});\n\nfunction $l(selector) {\n  if (typeof selector === \"string\") {\n    let collection = document.querySelectorAll(selector);\n    return new DOMNodeCollection(Array.from(collection));\n  } else if (selector instanceof HTMLElement) {\n    return new DOMNodeCollection([selector]);\n  }\n}\n\nfunction test() {\n  const testDiv = document.getElementById(\"test\");\n  console.log(testDiv);\n  testDiv.innerText = \"WE'RE INSIDE THE DIV\";\n}\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("const DOMNodeCollection = __webpack_require__(/*! ./dom_node_collection.js */ \"./src/dom_node_collection.js\");\n\ndocument.addEventListener(\"DOMContentLoaded\", function() {\n  test();\n  window.$l = $l;\n});\n\nfunction $l(selector) {\n  if (typeof selector === \"string\") {\n    let collection = document.querySelectorAll(selector);\n    return new DOMNodeCollection(Array.from(collection));\n  } else if (selector instanceof HTMLElement) {\n    return new DOMNodeCollection([selector]);\n  }\n}\n\nfunction test() {\n  const testDiv = document.getElementById(\"test1\");\n  console.log(testDiv);\n  testDiv.innerText = \"WE'RE INSIDE THE DIV\";\n}\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

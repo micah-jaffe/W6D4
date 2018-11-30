@@ -15,7 +15,7 @@ function $l(selector) {
 }
 
 function test() {
-  const testDiv = document.getElementById("test");
+  const testDiv = document.getElementById("test1");
   console.log(testDiv);
   testDiv.innerText = "WE'RE INSIDE THE DIV";
 }
